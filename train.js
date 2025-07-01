@@ -89,7 +89,8 @@ function createTextDiv(string,parent)
 
 function playGame()
 {
-    
+     let hitCount = document.querySelector(".score");
+     hitCount.textContent = `HITS : ${hits}`;
     let target = document.createElement("div");
     target.className = "target";
 
@@ -98,7 +99,6 @@ function playGame()
 
     target.addEventListener("click",() =>{
         hits++;
-        let hitCount = document.querySelector(".score")
         hitCount.textContent = `HITS : ${hits}`;
         changePosition(target);
     });
