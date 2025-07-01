@@ -16,6 +16,10 @@ let grid = document.querySelector(".grid");
 
 let time = 15;
 let hits = 0;
+let clicks = 0;
+
+grid.addEventListener("click",() => clicks++);
+
 
 startTimer();
 playGame();
@@ -23,26 +27,69 @@ playGame();
 function startTimer(){
 
     let timer = document.querySelector(".time");
+    timer.textContent = `TIME: ${time}`;
     
-    let second = 15;
+    let second = time;
         let countdown = setInterval(() =>{
             second--;
             time = second;
             timer.textContent = `TIME: ${second}`;
 
+
             if(second == 0)
             {
                 clearInterval(countdown);
                 document.querySelector(".target").remove();
+                removeEventListener("click",() => clicks++);
+                end();
             }
         },1000)
 
 }
 
+function end()
+{
+    let gameResult = document.createElement("div");
+    gameResult.className = "result";
+    
+    createTextDiv(`hits    : ${hits}`,gameResult);
+    createTextDiv(`speed   : ${Math.round((hits/15)*100)/100} hits/second`,gameResult);
+    if (clicks == 1 )
+    {
+        clicks++;
+    }
+    createTextDiv(`accuracy: ${Math.round(hits*100/(clicks-1)*100)/100}%`,gameResult);
+
+    let playAgain = document.createElement("button");
+    playAgain.className = "play-again";
+    playAgain.textContent = "PLAY AGAIN"
+    playAgain.addEventListener("click",() =>{
+        playAgain.parentNode.remove();
+        gameStart();
+    })
+    gameResult.appendChild(playAgain);
+
+    grid.appendChild(gameResult);
+
+
+    
+}
+
+function createTextDiv(string,parent)
+{
+    let temp = document.createElement("div");
+    temp.className = "text";
+    temp.textContent = string;
+
+    parent.appendChild(temp);
+    
+    return temp;
+}
 
 
 function playGame()
 {
+    
     let target = document.createElement("div");
     target.className = "target";
 

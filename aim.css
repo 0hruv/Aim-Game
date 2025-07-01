@@ -54,6 +54,7 @@ body{
     display: flex;
     justify-content: center;
 }
+
 .grid{
     height: 75vh;
     width : 95vw;
@@ -67,7 +68,7 @@ body{
     border-radius: 6vh ; 
 }
 
-.start{
+.start,.play-again{
     height: 6vh;
     width: 14vw ;
     font-family: 'Share Tech Mono', monospace;
@@ -76,12 +77,31 @@ body{
     font-weight: 600;
     border-radius: 4vh;
     color:coral;
+}
+
+.start{
     position: absolute;
     top : 31.5vh;
     right : 37.5vw;
 }
 
 .result{
-    display: flex;
-    flex-direction: column;
+   position: absolute;
+    top : 25vh;
+    right : 37.5vw;
 }
+
+
+.play-again{
+    width : 17vw;
+    margin-top: 3vh;
+}
+
+.text{
+    font-family: 'Share Tech Mono', monospace;
+    font-size: medium;
+    color: white;
+    font-size: 2.5vh;
+    margin-top: 1vh;
+}
+
